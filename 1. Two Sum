@@ -1,18 +1,8 @@
 class Solution:
-    def twoSum(self, nums, target):
-        '''
-        nums: List[int]
-        target: int
-        output:List[int]
-        '''
-        self.nums = nums
-        self.target = target
-        for i in range(len(self.nums)):
-            for j in range(i,len(self.nums)):
-                result = self.nums[i]+self.nums[j]
-                if result != self.target:
-                    pass
-                else:
-                    return([i,j])
-                
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in nums:
+            for j in nums:
+                if j == target-i and j!=i:
+                    return nums.index(i), nums.index(j)
+                    
 # NOTICE: Leetcode result needs ‘return’ not ‘print’
