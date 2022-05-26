@@ -1,0 +1,30 @@
+class Solution:
+    def findMedianSortedArrays(self, nums1, nums2) -> float:
+        
+        Even = True if (len(nums1) + len(nums2)) % 2 == 0 else False
+
+        if not Even:
+            def mid_num(nums):
+                mid = nums[int(len(nums) / 2)]
+                return mid
+
+        if Even:
+            def mid_num(nums):
+                mid = (nums[int(len(nums) / 2)] + nums[int(len(nums) / 2 - 1)]) / 2
+                return mid
+
+        if nums1[len(nums1) - 1] <= nums2[0] or nums2[len(nums2) - 1] <= nums1[0]:
+            med = nums1 + nums2
+            
+        else:
+            med = []
+            while nums1 != [] and nums2 != []:
+                current = nums1.pop(0) if nums1[0] < nums2[0] else nums2.pop(0)
+                med.append(current)
+
+            if nums1 != []:
+                med.append(nums1)
+            elif nums2 != []:
+                med.append(nums2)
+      
+        return mid_num(med)    
