@@ -1,0 +1,22 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        
+        s = list(s)
+
+        def findLength(x):
+            s1 = s[:]
+            i = 0
+            while s1[i] != x:
+                i += 1
+            j = len(s1) - 1
+            while s1.pop() != x:
+                j -= 1
+            return j - i + 1, s[i:(j+1)]
+
+        long = {}
+        for char in set(s):
+            long[char] = findLength(char)[0]
+
+        max_str = findLength(max(long, key=long.get))[1]
+        str = ''
+        return str.join(max_str) 
