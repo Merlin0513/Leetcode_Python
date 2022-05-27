@@ -1,0 +1,30 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        
+        s = list(s)
+
+        def even_odd(x):
+            even = True if x % 2 == 0 else False
+            return even
+
+        num_of_seq = 2*int(len(s)/(2*numRows-2)) + 1 if len(s)%(2*numRows-2) <= numRows else 2*int(len(s)/(2*numRows-2)) + 2
+
+        mat = []
+
+        for i in range(num_of_seq):
+            mat.append(s[i*(numRows-1):(i+1)*(numRows-1)+1])
+            if not even_odd(i):
+                mat[i].reverse()
+                mat[i][0] = ''
+                mat[i][len(mat[i]) - 1] = '' if i != (num_of_seq - 1) else mat[i][len(mat[i]) - 1]
+
+        mat[num_of_seq - 1] = mat[num_of_seq - 1] + ['']*((num_of_seq)*(numRows-1)+1-len(s))
+        
+        str = []
+
+        for j in range(numRows):
+            for k in range(num_of_seq):
+                str.append(mat[k][j])
+
+        s1 = ''
+        return s1.join(str)
