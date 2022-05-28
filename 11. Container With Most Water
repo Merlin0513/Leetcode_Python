@@ -1,0 +1,9 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        
+        s = []
+        for i in range(len(height)):
+            for j in range(i, len(height)):
+                s.append((j - i) * min(height[j], height[i]))
+                
+        return max(s)
