@@ -1,0 +1,18 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+
+        l1, l2 = [], []
+        for i in range(10):
+            l1.append(str(i))
+
+        l1 += ['+', '-', ' ']
+
+        for char in list(s):
+            if char in l1:
+                l2.append(char)
+            elif char != ' ':
+                break
+                
+        c = ''.join(l2)
+
+        return int(c.strip())
