@@ -1,0 +1,27 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        L = []
+
+        def anagrams(s1, s2):
+            return set(s1) == set(s2)
+        
+        if len(strs) == 0:
+            return L.append(strs)
+        
+        elif len(strs) > 0:
+            def group(s):
+                if len(s) == 0:
+                    pass
+                elif len(s) > 0:
+                    s1, l = s[:], []
+                    for string in s1:
+                        if anagrams(s1[0], string):
+                            l.append(string)
+                            s.remove(string)
+
+                    L.append(l)
+                    group(s)
+                    return L
+
+        return group(strs)
