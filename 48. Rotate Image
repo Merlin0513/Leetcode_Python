@@ -1,0 +1,14 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        
+        l, L = [], []
+        for i in range(len(matrix)):
+            l =  matrix[i][:]
+            L.append(l)
+
+        for i in range(len(L)):
+            for j in range(len(L[0])):
+                matrix[i][j] = L[len(L[0]) - j - 1][i]
