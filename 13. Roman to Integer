@@ -1,0 +1,21 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        
+        digit_1 = {'I':'1', 'II':'2', 'III':'3', 'IV':'4', 'V':'5', 'VI':'6', 'VII':'7', 'VIII':'8', 'IX':'9'}
+        digit_2 = {'X':'1', 'XX':'2', 'XXX':'3', 'XL':'4', 'L':'5', 'LX':'6', 'LXX':'7', 'LXXX':'8', 'XC':'9'}
+        digit_3 = {'C':'1', 'CC':'2', 'CCC':'3', 'CD':'4', 'D':'5', 'DC':'6', 'DCC':'7', 'DCCC':'8', 'CM':'9'}
+        digit_4 = {'M':'1', 'MM':'2', 'MMM':'3'}
+        
+        l, L, j = [digit_1, digit_2, digit_3, digit_4], [], 0
+
+        endpoint = len(s)
+        for i in range(len(s)):
+            if s[(len(s) - 1 - i):endpoint] not in l[j].keys() and len(s) - i > 0:
+                L.append(l[j][s[(len(s) - i):endpoint]])
+                endpoint = len(s) - i
+                j += 1
+
+        L.append(l[j][s[:endpoint]])
+        L.reverse()
+
+        return int(''.join(L))
