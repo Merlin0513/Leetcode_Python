@@ -1,0 +1,26 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        
+        
+        def twoSum(s, target):
+            l = {}
+            for i in range(len(s)):
+                if target - s[i] not in l.keys():
+                    l[target - s[i]] = i
+            for j in range(len(s)):
+                if s[j] in l.keys() and j != l[s[j]]:
+                    return [s[l[s[j]]], s[j]]
+
+                
+        L, u = [], []
+        for i in range(len(nums)):
+            nums1 = nums[:]
+            j = nums1.pop(i)
+            if twoSum(nums1, target=-j) != None:
+                k = twoSum(nums1, target=-j)
+                k.insert(0, j)
+                if set(k) not in u:
+                    u.append(set(k))
+                    L.append(k)
+
+        return L
