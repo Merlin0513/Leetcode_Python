@@ -1,0 +1,21 @@
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        
+        def twoSum(s):
+            l = []
+            for i in range(len(s)):
+                for j in s[(i+1):]:
+                    l.append(s[i]+j)
+            return l
+        
+        L, u = [], {}
+        for k in range(len(nums)):
+            nums1 = nums[:]
+            j = nums1.pop(k)
+            nl = [i + j for i in twoSum(nums1)]
+            L += nl
+
+        for i in L:
+            u[abs(i-target)]  = i
+
+        return u[min(u.keys())]
